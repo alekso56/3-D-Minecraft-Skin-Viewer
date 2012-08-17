@@ -6,9 +6,12 @@
 
 /* Elements */
 body {
+	background: transparent;
+/*
 	background-image:url(images/bg_line.png);
 	background-position:top center;
 	background-repeat:repeat;
+*/
 	margin:0;
 	padding:0;
 }
