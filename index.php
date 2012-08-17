@@ -4,10 +4,9 @@ By Kent Rasmussen @ earthiverse.ath.cx
 Using Three.Js HTML5 3D Engine from https://github.com/mrdoob/three.js/
 Add ?user=USERNAME to render a specific username
 Add &refresh to re-grab the skin and generate new parts
-Add &webgl to render in webgl
 -->
 <?php include('backend/backend.php');
-if(!isset($user)) $user = earthiverse;
+if(!isset($user)) $user = 'earthiverse';
 if(isset($refresh)) minecraft_skin_delete($user);
 minecraft_skin_download($user);?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -16,6 +15,7 @@ minecraft_skin_download($user);?>
 <script type="text/javascript" src="backend/resources/3d/Three.js"></script>
 <script type="text/javascript" src="backend/resources/3d/Cube.js"></script>
 <script type="text/javascript" src="backend/resources/3d/ImageUtils.js"></script>
+<script type="text/javascript" src="backend/resources/3d/Detector.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="style.css" rel="stylesheet" type="text/css" />
 <title>3d minecraft body test v1.0</title>
@@ -87,7 +87,11 @@ minecraft_skin_download($user);?>
   hat.position.z = 0;
   scene.addObject(hat);
 
-  <?php if(isset($_GET['webgl'])) echo 'renderer = new THREE.WebGLRenderer();'; else echo 'renderer = new THREE.CanvasRenderer();'; ?>
+  if(Detector.webgl) {
+	  renderer = new THREE.WebGLRenderer();
+  } else {
+	  renderer = new THREE.CanvasRenderer();
+  }
 
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
