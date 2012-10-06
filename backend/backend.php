@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(~E_ALL);
 
 //List of Variables used on the site
 if(isset($_GET['user'])) $user = htmlentities($_GET['user'],ENT_QUOTES); //Minecraft Username
@@ -121,7 +121,7 @@ function minecraft_skin_download($user) {
     {
         // Grab the Cape
         $providers = array(
-            'http://minez-nightswatch.com/cape/{user}.png',
+            'http://minez-nightswatch.com/cape/{user}.png?version=TNW-viewer_1000',
             'http://www.minecapes.net/players/hdcape/{user}.png',
             'http://www.minecapes.net/players/{user}.png',
             'http://www.mccapes.com/MinecraftCloaksssss/{user}.png',
